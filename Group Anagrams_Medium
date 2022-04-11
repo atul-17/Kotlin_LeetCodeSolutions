@@ -1,0 +1,27 @@
+class Solution {
+    fun groupAnagrams(strs: Array<String>): List<List<String>> {
+    
+    var resultList : ArrayList<ArrayList<String>> = ArrayList()
+    
+    var hashMap : HashMap<String,ArrayList<String>> = HashMap()
+    
+    for(str :String in strs){
+           var charStr = str.toCharArray()
+           Arrays.sort(charStr)
+           var key : String = String(charStr)
+           //check if the key is present 
+           //otherwise create a list and then add it
+           
+            if(hashMap.containsKey(key)){
+                hashMap.getValue(key).add(str)
+            }else{
+                var strList : ArrayList<String> = ArrayList()
+                strList.add(str)
+                hashMap.put(key,strList)
+            }
+           
+        }
+        resultList.addAll(hashMap.values)
+        return resultList
+    }
+}
