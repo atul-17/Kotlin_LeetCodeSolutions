@@ -1,0 +1,24 @@
+class Solution {
+    fun topKFrequent(nums: IntArray, k: Int): IntArray {
+        var numsMap : HashMap<Int,Int> = HashMap()
+        var resultArray : IntArray = IntArray(k)
+         
+        for(i in nums.indices){
+          if(numsMap.containsKey(nums[i])){
+              //inc the value of the freq by 1
+              numsMap.put(nums[i], numsMap.get(nums[i])?.plus(1) ?: 1)
+          }else{
+              numsMap.put(nums[i],1)
+          }
+        }
+        
+        repeat(k){
+             index-> 
+            var maxValue = numsMap.maxBy { it.value }
+            resultArray[index] = maxValue!!.key
+            numsMap.remove(maxValue!!.key)
+            }               
+                        
+          return resultArray
+    }
+}
