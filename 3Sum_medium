@@ -1,0 +1,36 @@
+class Solution {
+    fun threeSum(nums: IntArray): ArrayList<List<Int>> {
+       var resultList : ArrayList<List<Int>> = ArrayList()
+      
+        Arrays.sort(nums)
+        for(i in 0 until nums.size-2){
+            //this condtion checks that prev a element should be equal
+            //to the next element in the array
+            
+            if(i == 0 || (i > 0 && nums[i]!=nums[i-1])){
+                 
+                var lo = i+1//next ele after a 
+                var hi = nums.size - 1 // last element in the array
+                var sum = 0 - nums[i]//similar to a+b+c = 0--> b+c = 0-a
+                
+                while(lo < hi){
+                   
+                    if(nums[lo] + nums[hi] == sum){
+                        //then you have got your triplet
+                        resultList.add(Arrays.asList(nums[lo],nums[i],nums[hi]))
+                       
+                        //incase the the value at lo ptr is eaual to next ele-->inc the next ele
+                        while(lo < hi && nums[lo] == nums[lo + 1])lo++
+                        while(lo < hi && nums[hi] == nums[hi-1])hi--
+                        
+                        lo++
+                        hi--  
+                    }else if(nums[lo] + nums[hi] < sum) lo++
+                    else hi--
+                }
+            }
+        }
+        
+        return resultList
+    }
+}
