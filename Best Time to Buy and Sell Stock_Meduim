@@ -1,0 +1,15 @@
+class Solution {
+    fun maxProfit(prices: IntArray): Int {
+         var maxProfit = 0
+         var minSoFar = prices[0] 
+            
+          for(i in 0 until prices.size){
+            minSoFar = Math.min(minSoFar,prices[i])
+            var profit = prices[i] - minSoFar
+            maxProfit = Math.max(maxProfit,profit)
+            }
+        
+        return maxProfit
+            }
+
+        }
