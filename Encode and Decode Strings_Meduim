@@ -1,0 +1,27 @@
+class Codec {
+    // Encodes a list of strings to a single string.
+    fun encode(strs: List<String>): String {
+         val sb = StringBuilder()
+        for (s in strs) {
+        sb.append(s.length).append('#').append(s)
+        }
+        print(sb)
+    return sb.toString()
+        //return encodedStr
+    }
+    
+    
+   fun decode(s: String): List<String> {
+    val ret: MutableList<String> = ArrayList()
+    var i = 0
+    while (i < s.length) {
+        val hash = s.indexOf('#', i)
+
+        val size = Integer.valueOf(s.substring(i, hash))
+        i = hash + size + 1//will give me the next word after #
+        ret.add(s.substring(hash + 1, i))
+    }
+    print(ret)
+    return ret
+    }
+}
