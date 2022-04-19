@@ -1,0 +1,21 @@
+class Solution {
+   fun lengthOfLongestSubstring(s: String): Int {
+    var a_ptr =0
+    var b_ptr =0//second var which goes on expanding the window
+
+    var max = 0
+    var hashset : HashSet<Char> = HashSet()
+
+    while (b_ptr < s.length){
+        if (!hashset.contains(s[b_ptr])){
+            hashset.add(s[b_ptr])
+            b_ptr++
+            max = Math.max(max,hashset.size)
+        }else{
+            hashset.remove(s.get(a_ptr))
+            a_ptr++
+        }
+     }
+      return max
+   }
+}
