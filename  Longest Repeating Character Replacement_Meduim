@@ -1,0 +1,36 @@
+class Solution {
+    fun characterReplacement(s: String, k: Int): Int {
+    var charCount : HashMap<String,Int> = HashMap()
+    var res = 0
+    var windowStart = 0
+
+    for (windowEnd in 0 until s.length){
+        var end : Char = s[windowEnd]
+        charCount[end.toString()] = charCount.getOrDefault(end.toString(),0)+1
+        //print(charCount.toString())
+        //size of the current window
+        while (((windowEnd - windowStart + 1) - getMax(charCount)) > k) {
+            //if window len - maxCount of char occur
+            //remove the char present in the map
+            //move the first pointer 
+            var startChar: Char = s.get(windowStart)
+            charCount.put(startChar.toString(),charCount.getValue(startChar.toString())-1)
+            //inc windowStart count
+            windowStart += 1
+        }
+                           //size of the current window   
+        res = Math.max(res,windowEnd - windowStart + 1 )
+    }
+    return res
+    }
+    
+fun getMax(map : HashMap<String,Int>) : Int{
+    var maxKey: String? = null
+    for (key in map.keys) {
+        if (maxKey == null || map[key]!! > map[maxKey]!!) {
+            maxKey = key
+         }
+     }
+    return map.getValue(maxKey!!)
+  }
+}
