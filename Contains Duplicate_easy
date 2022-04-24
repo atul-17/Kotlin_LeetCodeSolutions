@@ -1,0 +1,29 @@
+class Solution {
+    fun containsDuplicate(nums: IntArray): Boolean {
+        
+        var numsMap : HashMap<Int,Int> = HashMap()
+        var count : Int = 1
+        for (i in nums.indices) {
+            if(numsMap.containsKey(nums[i])){
+               count = numsMap.getValue(nums[i]) + 1
+            }else{
+                count = 1
+            }
+            numsMap.put(nums[i],count)
+            //print(numsMap)          
+        }
+        
+        return checkHashMap(numsMap)
+    }
+    
+    fun checkHashMap(hashmap : HashMap<Int,Int> ) : Boolean{
+        var isDuplicateContains = false
+        for ((key, value) in hashmap) {
+            //println("$key = $value")
+            if(value > 1){
+                isDuplicateContains = true
+            }
+        }
+        return isDuplicateContains
+    }
+}
