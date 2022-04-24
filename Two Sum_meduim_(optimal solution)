@@ -1,0 +1,21 @@
+class Solution {
+    fun twoSum(nums: IntArray, target: Int): IntArray {
+    var hashMap : HashMap<Int,Int> = HashMap()
+    var resArray : IntArray = IntArray(2)
+    for (i in nums.indices){
+        val k = target-nums[i]
+       // print("k: "+k)
+        if(!hashMap.contains(k)){
+            //add it to hashmap
+            //if it is not present
+            hashMap.put(nums[i],i)
+        }else{
+            //add the index to the resArray
+            resArray[0] = hashMap.getValue(k)
+            resArray[1] = i//the current index
+            break
+        }
+    }
+    return resArray
+    }
+}

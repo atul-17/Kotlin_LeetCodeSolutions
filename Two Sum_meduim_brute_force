@@ -1,0 +1,18 @@
+class Solution {
+    fun twoSum(nums: IntArray, target: Int): IntArray {
+       
+        var resArray : IntArray= IntArray(2)
+        
+        for(i in nums.indices){
+           for(j in i+1 until nums.size){
+                val addedNums = nums[i] + nums[j]
+                if(addedNums == target){
+                    resArray[0] = i
+                    resArray[1] = j
+                    break
+                }
+            }
+        }
+        return resArray
+    }
+}
