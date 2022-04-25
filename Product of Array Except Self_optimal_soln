@@ -1,0 +1,30 @@
+class Solution {
+    fun productExceptSelf(nums: IntArray): IntArray {
+       // var leftProducts : IntArray   = IntArray(nums.size)
+        
+        //var rightProducts : IntArray   = IntArray(nums.size)
+        var outputArray = IntArray(nums.size)
+        
+        //leftProducts[0]  = 1
+        //rightProducts[nums.size-1] = 1
+        
+        outputArray[0] = 1
+        
+        for(i in 1 until nums.size){
+            outputArray[i] =  outputArray[i-1] * nums[i-1]
+            //print("leftProductsValue:" +leftProducts[i] + ",")
+        }
+        
+        var R = 1
+        var j: Int = nums.size -1//start with second last element
+        while (j >= 0) {
+            outputArray[j] = outputArray[j] * R
+            //print("rightProductsValue: "+ outputArray[j] + ",")
+            R = R * nums[j]
+            j--     
+        }
+        
+                            
+        return outputArray
+    }
+}
